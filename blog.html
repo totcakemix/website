@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs - DeadCakeMix</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<style>
+    body {
+        background-color: #1a202c;
+        color: #a0aec0;
+        margin: 0;
+        overscroll-behavior: none;
+        position: relative;
+    }
+</style>
+
+<body class="font-mono">
+    <header class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">DeadCakeMix</a>
+            <nav>
+                <a href="/" class="text-lg mx-2 hover:underline">Home</a>
+                <a href="/blog" class="text-lg mx-2 hover:underline">Blog</a>
+                <a href="/about" class="text-lg mx-2 hover:underline">About</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <main class="container mx-auto py-12 px-4">
+        <h1 class="text-3xl font-bold text-white mb-6 text-center">Blogs</h1>
+        <div class="mb-8">
+            <input type="text" id="search-bar" class="w-full p-4 rounded-lg shadow-md bg-gray-900 text-white placeholder-gray-400" placeholder="Search by title, date, or tags...">
+        </div>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-semibold text-white mb-4">Featured Blogs</h2>
+            <div id="featured-blogs" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Sample blog cards -->
+                <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg">
+                    <img src="https://via.placeholder.com/1200x600" alt="Blog Image" class="w-full h-40 object-cover mb-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-white mb-2">The Future of Web Development</h3>
+                    <p class="text-gray-400 mb-2">An insight into emerging trends and technologies.</p>
+                    <div class="text-gray-500 mb-2">Tags: <span class="text-blue-400">Web Development</span>, <span class="text-blue-400">Technology</span></div>
+                    <div class="text-gray-500">Date: July 25, 2024</div>
+                    <a href="/blog/1" class="text-blue-400 hover:underline mt-4 inline-block">Read More</a>
+                </div>
+                <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg">
+                    <img src="https://via.placeholder.com/1200x600" alt="Blog Image" class="w-full h-40 object-cover mb-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-white mb-2">The Rise of AI in Everyday Life</h3>
+                    <p class="text-gray-400 mb-2">Exploring how AI is becoming a part of our daily routines.</p>
+                    <div class="text-gray-500 mb-2">Tags: <span class="text-blue-400">AI</span>, <span class="text-blue-400">Technology</span></div>
+                    <div class="text-gray-500">Date: August 5, 2024</div>
+                    <a href="/blog/3" class="text-blue-400 hover:underline mt-4 inline-block">Read More</a>
+                </div>
+                <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg">
+                    <img src="https://via.placeholder.com/1200x600" alt="Blog Image" class="w-full h-40 object-cover mb-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-white mb-2">Exploring the Metaverse</h3>
+                    <p class="text-gray-400 mb-2">A look into virtual reality spaces and their impact on society.</p>
+                    <div class="text-gray-500 mb-2">Tags: <span class="text-blue-400">Metaverse</span>, <span class="text-blue-400">VR</span></div>
+                    <div class="text-gray-500">Date: August 10, 2024</div>
+                    <a href="/blog/4" class="text-blue-400 hover:underline mt-4 inline-block">Read More</a>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-2xl font-semibold text-white mb-4">Recent Blogs</h2>
+            <div id="recent-blogs" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Sample blog cards -->
+                <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg">
+                    <img src="https://via.placeholder.com/1200x600" alt="Blog Image" class="w-full h-40 object-cover mb-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-white mb-2">Understanding Quantum Computing</h3>
+                    <p class="text-gray-400 mb-2">A beginner's guide to the world of quantum mechanics.</p>
+                    <div class="text-gray-500 mb-2">Tags: <span class="text-blue-400">Quantum Computing</span>, <span class="text-blue-400">Science</span></div>
+                    <div class="text-gray-500">Date: July 30, 2024</div>
+                    <a href="/blog/2" class="text-blue-400 hover:underline mt-4 inline-block">Read More</a>
+                </div>
+                <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg">
+                    <img src="https://via.placeholder.com/1200x600" alt="Blog Image" class="w-full h-40 object-cover mb-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-white mb-2">Advancements in Renewable Energy</h3>
+                    <p class="text-gray-400 mb-2">How recent innovations are shaping the future of energy.</p>
+                    <div class="text-gray-500 mb-2">Tags: <span class="text-blue-400">Renewable Energy</span>, <span class="text-blue-400">Environment</span></div>
+                    <div class="text-gray-500">Date: August 1, 2024</div>
+                    <a href="/blog/5" class="text-blue-400 hover:underline mt-4 inline-block">Read More</a>
+                </div>
+                <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg">
+                    <img src="https://via.placeholder.com/1200x600" alt="Blog Image" class="w-full h-40 object-cover mb-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-white mb-2">The Evolution of Social Media</h3>
+                    <p class="text-gray-400 mb-2">Tracing the development and influence of social media platforms.</p>
+                    <div class="text-gray-500 mb-2">Tags: <span class="text-blue-400">Social Media</span>, <span class="text-blue-400">Tech Trends</span></div>
+                    <div class="text-gray-500">Date: August 3, 2024</div>
+                    <a href="/blog/6" class="text-blue-400 hover:underline mt-4 inline-block">Read More</a>
+                </div>
+                <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg">
+                    <img src="https://via.placeholder.com/1200x600" alt="Blog Image" class="w-full h-40 object-cover mb-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-white mb-2">Cybersecurity in 2024</h3>
+                    <p class="text-gray-400 mb-2">What to expect from cybersecurity measures and threats this year.</p>
+                    <div class="text-gray-500 mb-2">Tags: <span class="text-blue-400">Cybersecurity</span>, <span class="text-blue-400">Security</span></div>
+                    <div class="text-gray-500">Date: August 7, 2024</div>
+                    <a href="/blog/7" class="text-blue-400 hover:underline mt-4 inline-block">Read More</a>
+                </div>
+                <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg">
+                    <img src="https://via.placeholder.com/1200x600" alt="Blog Image" class="w-full h-40 object-cover mb-4 rounded-lg">
+                    <h3 class="text-xl font-bold text-white mb-2">The Impact of 5G Technology</h3>
+                    <p class="text-gray-400 mb-2">Exploring the transformative effects of 5G on various industries.</p>
+                    <div class="text-gray-500 mb-2">Tags: <span class="text-blue-400">5G</span>, <span class="text-blue-400">Technology</span></div>
+                    <div class="text-gray-500">Date: August 9, 2024</div>
+                    <a href="/blog/8" class="text-blue-400 hover:underline mt-4 inline-block">Read More</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p class="text-gray-400 mt-2">© 2024 DeadCakeMix. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const blogs = [
+            {
+                title: "The Future of Web Development",
+                date: "July 25, 2024",
+                tags: ["Web Development", "Technology"],
+                url: "/blog/1"
+            },
+            {
+                title: "The Rise of AI in Everyday Life",
+                date: "August 5, 2024",
+                tags: ["AI", "Technology"],
+                url: "/blog/3"
+            },
+            {
+                title: "Exploring the Metaverse",
+                date: "August 10, 2024",
+                tags: ["Metaverse", "VR"],
+                url: "/blog/4"
+            },
+            {
+                title: "Understanding Quantum Computing",
+                date: "July 30, 2024",
+                tags: ["Quantum Computing", "Science"],
+                url: "/blog/2"
+            },
+            {
+                title: "Advancements in Renewable Energy",
+                date: "August 1, 2024",
+                tags: ["Renewable Energy", "Environment"],
+                url: "/blog/5"
+            },
+            {
+                title: "The Evolution of Social Media",
+                date: "August 3, 2024",
+                tags: ["Social Media", "Tech Trends"],
+                url: "/blog/6"
+            },
+            {
+                title: "Cybersecurity in 2024",
+                date: "August 7, 2024",
+                tags: ["Cybersecurity", "Security"],
+                url: "/blog/7"
+            },
+            {
+                title: "The Impact of 5G Technology",
+                date: "August 9, 2024",
+                tags: ["5G", "Technology"],
+                url: "/blog/8"
+            }
+        ];
+
+        function renderBlogs() {
+            const searchQuery = document.getElementById('search-bar').value.toLowerCase();
+            const featuredBlogsContainer = document.getElementById('featured-blogs');
+            const recentBlogsContainer = document.getElementById('recent-blogs');
+
+            featuredBlogsContainer.innerHTML = '';
+            recentBlogsContainer.innerHTML = '';
+
+            blogs.forEach(blog => {
+                if (blog.title.toLowerCase().includes(searchQuery) ||
+                    blog.date.toLowerCase().includes(searchQuery) ||
+                    blog.tags.some(tag => tag.toLowerCase().includes(searchQuery))) {
+                    
+                    const blogCard = `
+                        <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg">
+                            <img src="https://via.placeholder.com/1200x600" alt="Blog Image" class="w-full h-40 object-cover mb-4 rounded-lg">
+                            <h3 class="text-xl font-bold text-white mb-2">${blog.title}</h3>
+                            <p class="text-gray-400 mb-2">A brief description of the blog content.</p>
+                            <div class="text-gray-500 mb-2">Tags: ${blog.tags.map(tag => `<span class="text-blue-400">${tag}</span>`).join(', ')}</div>
+                            <div class="text-gray-500">Date: ${blog.date}</div>
+                            <a href="${blog.url}" class="text-blue-400 hover:underline mt-4 inline-block">Read More</a>
+                        </div>
+                    `;
+
+                    
+                    if (blog.date.includes("July 25") || blog.date.includes("August 5") || blog.date.includes("August 10")) {
+                        featuredBlogsContainer.innerHTML += blogCard;
+                    } else {
+                        recentBlogsContainer.innerHTML += blogCard;
+                    }
+                }
+            });
+        }
+
+        document.getElementById('search-bar').addEventListener('input', renderBlogs);
+
+        // Initial render
+        renderBlogs();
+    </script>
+</body>
+
+</html>
