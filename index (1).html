@@ -1,0 +1,302 @@
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DeadCakeMix</title>
+        <link href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    </head>
+    <style>
+        /* Custom styles bc tailwind is mid*/
+        body {
+            background-color: #1a202c;
+            color: #a0aec0;
+            margin: 0;
+            overscroll-behavior: none;
+            position: relative;
+        }
+
+        .bg-gradient {
+            background: linear-gradient(45deg, #3182ce, #2b6cb0);
+        }
+
+        .bg-dark {
+            background-color: #2d3748;
+        }
+
+        .typewriter-text {
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            border-right: .15em solid transparent;
+            animation: blink-caret 0.75s infinite;
+        }
+
+        @keyframes blink-caret {
+            0%, 100% {
+                border-color: #3182ce;
+            }
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        .scroll-down {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .fade-out {
+            opacity: 0;
+        }
+
+        header {
+            display: block;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+        }
+
+        header nav {
+            text-align: center;
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 20px;
+        }
+
+        header a:hover {
+            color: #ddd;
+        }
+
+        .sub-text-container,
+        .button-container,
+        .arrow-container {
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .button-container {
+            height: 3rem;
+            margin-top: 2rem;
+        }
+
+        .arrow-container {
+            height: 4rem;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .box-equal-width {
+            width: 100%;
+        }
+
+        .box-equal-height {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        @media (min-width: 768px) {
+            .box-equal-width {
+                width: calc(50% - 2rem);
+                margin: 1rem;
+            }
+        }
+
+        .content-container {
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .content-container h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #3182ce;
+            display: inline-block;
+        }
+
+        .content-container p {
+            color: #a0aec0;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            color: #3182ce;
+        }
+
+        .content-container .profile-image {
+            border-radius: 50%;
+            margin-bottom: 2rem;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 4px solid #3182ce;
+        }
+
+        .content-container ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .content-container li {
+            background-color: #2d3748;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-left: 4px solid #3182ce;
+            transition: transform 0.3s;
+        }
+
+        .content-container li:hover {
+            transform: scale(1.05);
+        }
+
+        .blog-card {
+            background-color: #2d3748;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: scale(1.05);
+        }
+
+        .blog-card h3 {
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .blog-card p {
+            color: #a0aec0;
+        }
+
+        .blog-card a {
+            color: #3182ce;
+            text-decoration: underline;
+        }
+    </style>
+
+    <body class="font-mono">
+        <header class="bg-gray-800 text-white py-4">
+            <div class="container mx-auto flex justify-between items-center">
+                <a href="/" class="text-2xl font-bold">DeadCakeMix</a>
+                <nav>
+                    <a href="/home" class="text-lg mx-2 hover:underline">Home</a>
+                    <a href="/blog" class="text-lg mx-2 hover:underline">Blog</a>
+                    <a href="/about" class="text-lg mx-2 hover:underline">About</a>
+                </nav>
+            </div>
+        </header>
+
+        <div id="blue-section" class="flex flex-col items-center justify-center min-h-screen py-4">
+            <div class="text-center">
+                <h1 id="name" class="text-4xl font-bold text-white">
+                    <span id="typed-text" class="typewriter-text"></span>
+                </h1>
+                <div class="sub-text-container">
+                    <p id="sub-text" class="mt-2 text-lg animate__animated animate__fadeInUp" style="display: none;">Programmer, Tutor & Writer</p>
+                </div>
+            </div>
+            <div class="button-container">
+                <div class="bg-white rounded-full inline-block px-6 py-3 shadow-lg animate__animated animate__fadeIn" style="display: none;">
+                    <a href="/blog" class="text-gray-800 font-semibold hover:text-gray-900 transition duration-300">Read My Blogs</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-20 flex-container flex flex-wrap">
+            <div id="about-me" class="box-equal px-4 mb-8 w-full md:w-1/2" style="opacity: 0;">
+                <div class="bg-dark rounded-lg shadow-lg p-6 transform hover:scale-105 transition duration-300 h-full">
+                    <h2 class="text-xl font-semibold mb-4 text-white">About Me</h2>
+                    <p class="text-gray-200">Hello, I'm Jacob, a high school student who loves programming. I specialize in JavaScript, HTML, and Tailwind CSS, and enjoy creating websites, apps, and Discord bots. Writing and journalism are also passions of mine, and I enjoy sharing what I learn along the way.</p>
+                    <a href="/about" class="block mt-4 text-blue-400 hover:underline">Learn More</a>
+                </div>
+            </div>
+
+            <div id="latest-post" class="box-equal px-4 mb-8 w-full md:w-1/2" style="opacity: 0;">
+                <div class="bg-dark rounded-lg shadow-lg p-6 transform hover:scale-105 transition duration-300 h-full">
+                    <h2 class="text-xl font-semibold mb-4 text-white">Latest Blog Post</h2>
+                    <p class="text-gray-200">How rocket design influences modern architecture and engineering practices.</p>
+                    <a href="/blog" class="block mt-4 text-blue-400 hover:underline">Read More</a>
+                </div>
+            </div>
+        </div>
+
+
+
+        <footer class="bg-gray-800 text-white py-4">
+            <div class="container mx-auto">
+                <p class="text-center text-gray-400 mt-2">© 2024 DeadCakeMix. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <script>
+            const text = `DeadCakeMix`;
+            let index = 0;
+
+            function typeWriter() {
+                if (index < text.length) {
+                    document.getElementById("typed-text").innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, 150);
+                } else {
+                    document.getElementById("sub-text").style.display = "block";
+                    document.querySelector(".bg-white").style.display = "inline-block";
+                    document.getElementById("scroll-down").style.display = "block";
+                    setTimeout(() => {
+                        document.getElementById("scroll-down").style.opacity = 1;
+                    }, 200);
+                }
+            }
+
+            document.addEventListener("DOMContentLoaded", function() {
+                typeWriter();
+            });
+
+            const observerOptions = {
+                root: null,
+                rootMargin: "0px",
+                threshold: 0.1
+            };
+
+            const aboutMe = document.querySelector("#about-me");
+            const latestPost = document.querySelector("#latest-post");
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transition = "opacity 0.5s ease";
+                    }
+                });
+            }, observerOptions);
+
+            observer.observe(aboutMe);
+            observer.observe(latestPost);
+        </script>
+    </body>
+
+    </html>
