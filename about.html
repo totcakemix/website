@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - DeadCakeMix</title>
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<style>
+    body {
+        background-color: #1a202c;
+        color: #a0aec0;
+        margin: 0;
+        overscroll-behavior: none;
+        position: relative;
+    }
+
+    .bg-dark {
+        background-color: #2d3748;
+    }
+
+    header {
+        display: block;
+        width: 100%;
+        padding: 20px 0;
+        z-index: 1000;
+    }
+
+    header nav {
+        text-align: center;
+    }
+
+    header a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 10px;
+        font-size: 20px;
+    }
+
+    header a:hover {
+        color: #ddd;
+    }
+
+    .content-container {
+        padding: 4rem 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .content-container h1 {
+        color: #fff;
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 2px solid #3182ce;
+        display: inline-block;
+    }
+
+    .content-container p {
+        color: #a0aec0;
+        line-height: 1.8;
+        margin-bottom: 1rem;
+    }
+
+    .highlight {
+        color: #3182ce;
+    }
+
+    .content-container .profile-image {
+        border-radius: 50%;
+        margin-bottom: 2rem;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border: 4px solid #3182ce;
+    }
+
+    .content-container ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .content-container li {
+        background-color: #2d3748;
+        padding: 1rem;
+        margin: 0.5rem 0;
+        border-left: 4px solid #3182ce;
+        transition: transform 0.3s;
+    }
+
+    .content-container li:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+<body class="font-mono">
+    <header class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">DeadCakeMix</a>
+            <nav>
+                <a href="/" class="text-lg mx-2 hover:underline">Home</a>
+                <a href="/blog" class="text-lg mx-2 hover:underline">Blog</a>
+                <a href="/about" class="text-lg mx-2 hover:underline">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="content-container text-center">
+        <div class="flex justify-center items-center">
+            <img src="https://avatars.githubusercontent.com/u/175985451?v=4&size=64" alt="Profile Image" class="profile-image">
+        </div>
+        <h1>About Me</h1>
+        <p class="highlight">Hey! My name is Jacob, known online as DeadCakeMix.</p>
+        <p>I'm a high school student with a passion for <span class="highlight">coding</span> and <span class="highlight">writing</span>. I'm proficient in <span class="highlight">JavaScript</span>, and I've started learning <span class="highlight">C#</span>, and I love creating websites, apps, and other random things.</p>
+        <p>Besides coding, I'm also enthusiastic about <span class="highlight">writing</span> and <span class="highlight">journalism</span>. I share my knowledge and experiences through my blog, posting content on various topics ranging from <span class="highlight">technology</span> to <span class="highlight">personal growth</span>.</p>
+        <p>I have aspirations to attend a top <span class="highlight">STEM school</span> such as <span class="highlight">MIT</span> or <span class="highlight">Caltech</span>, and I hope this site helps contribute to that drive and push me to write more and hopefully convince others to pursue their hobbies and passions further.</p>
+        <p>Feel free to browse my blog for insights and tutorials, or contact me if you'd like to collaborate or learn more about what I do. Thanks for visiting my website!</p>
+
+        <h2 class="mt-6 text-2xl text-white">Quick Facts</h2>
+        <ul>
+            <li><strong>Location:</strong> Somewhere in the world</li>
+            <li><strong>Favorite Programming Language:</strong> JavaScript</li>
+            <li><strong>Hobbies:</strong> Coding, Writing, Chess, Rocketry, Math</li>
+            <li><strong>Current Project:</strong> This Website</li>
+        </ul>
+    </div>
+
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p class="text-gray-400 mt-2">© 2024 DeadCakeMix. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
