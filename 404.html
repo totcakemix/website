@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<style>
+    body {
+        background-color: #1a202c;
+        color: #a0aec0;
+        margin: 0;
+        overscroll-behavior: none;
+        position: relative;
+    }
+
+    .bg-dark {
+        background-color: #2d3748;
+    }
+
+    .text-404 {
+        font-size: 10rem;
+        font-weight: bold;
+        color: #3182ce;
+    }
+
+    .message {
+        font-size: 1.5rem;
+        color: #a0aec0;
+    }
+
+    .link-home {
+        color: #3182ce;
+        text-decoration: underline;
+        font-size: 1.25rem;
+    }
+
+    .content-container {
+        padding: 4rem 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .error-image {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .highlight {
+        color: #3182ce;
+    }
+</style>
+
+<body class="font-mono">
+    <header class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/website" class="text-2xl font-bold">DeadCakeMix</a>
+            <nav>
+                <a href="/website" class="text-lg mx-2 hover:underline">Home</a>
+                <a href="/webiste/blog" class="text-lg mx-2 hover:underline">Blog</a>
+                <a href="/website/about" class="text-lg mx-2 hover:underline">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="content-container">
+        <h1 class="text-404 animate__animated animate__bounceInDown">404</h1>
+        <p class="message animate__animated animate__fadeInUp">Oops! It seems you've found a page that doesn't exist.</p>
+        <p class="message mt-4 animate__animated animate__fadeInUp">No worries, just head back to <a href="/website" class="link-home">Home</a> and everything will be fine.</p>
+        <p class="message mt-4 animate__animated animate__fadeInUp">In the meantime, here's a joke:</p>
+        <p class="message mt-4 animate__animated animate__fadeInUp">Why do programmers prefer dark mode? Because light attracts bugs!</p>
+    </div>
+
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto">
+            <p class="text-center text-gray-400 mt-2">© 2024 DeadCakeMix. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(() => {
+                document.querySelector(".text-404").classList.remove("animate__bounceInDown");
+                document.querySelector(".text-404").classList.add("animate__pulse");
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>
