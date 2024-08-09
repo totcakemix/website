@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devlog 001 - Elvandor</title>
+    <title>Elvandor RPG - Devlog 001</title>
+    <link rel="icon" type="image/x-icon" href="../images/icon.png">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <style>
@@ -52,7 +53,7 @@
 
     <main class="container mx-auto py-12 px-4">
         <article class="bg-gray-900 rounded-lg shadow-lg p-6">
-            <h1 class="text-3xl font-bold text-white mb-4">Devlog 001 - Elvandor</h1>
+            <h1 class="text-3xl font-bold text-white mb-4">Elvandor RPG - Devlog 001</h1>
             <p class="text-gray-400 mb-4">By Jacob | August 9, 2024</p>
 
             <section class="mb-6">
@@ -240,7 +241,6 @@
             <section class="mb-6">
                 <h2 class="text-2xl font-semibold text-white mb-2">Design Choices</h2>
                 <p class="text-gray-300 mb-4">As you’ve seen, all items have a star value. This idea went through a couple of iterations, but the concept is to have a number stored as its star value, representing rarity or strength, and transform it into a set of 5 icons. The current icons are placeholders. If you have five of the same icon, it will be merged into the next one. There are five icons valued as increments of 5^n, where n is the icon’s place in the list, starting at 0. A function exists that takes a star value and returns five icons to represent the star value. If the number cannot be divided into a combination of emojis, a suffix of (+x) is added, where x is the remaining value. Below is the function that takes the star value as input and returns the output:</p>
-                <img src="./media/08-08-2024/fist-stars.png" width="600">
                 <pre class="bg-gray-800 p-4 rounded-lg overflow-x-auto">
 <code>function getStarRepresentation(number) {
   const emojiMap = {
