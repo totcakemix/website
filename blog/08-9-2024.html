@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devlog 001 - Elvandor</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<style>
+    body {
+        background-color: #1a202c;
+        color: #a0aec0;
+        margin: 0;
+        overscroll-behavior: none;
+        position: relative;
+    }
+    header {
+        display: block;
+        width: 100%;
+        padding: 20px 0;
+        z-index: 1000;
+    }
+
+    header nav {
+        text-align: center;
+    }
+
+    header a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 10px;
+        font-size: 20px;
+    }
+
+    header a:hover {
+        color: #ddd;
+    }
+</style>
+
+<body class="font-mono">
+    <header class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">DeadCakeMix</a>
+            <nav>
+                <a href="/" class="text-lg mx-2 hover:underline">Home</a>
+                <a href="/blog" class="text-lg mx-2 hover:underline">Blog</a>
+                <a href="/about" class="text-lg mx-2 hover:underline">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto py-12 px-4">
+        <article class="bg-gray-900 rounded-lg shadow-lg p-6">
+            <h1 class="text-3xl font-bold text-white mb-4">Devlog 001 - Elvandor</h1>
+            <p class="text-gray-400 mb-4">By Jacob | August 9, 2024</p>
+
+            <section class="mb-6">
+                <h2 class="text-2xl font-semibold text-white mb-2">Introduction</h2>
+                <p class="text-gray-300 mb-4">Recently, I’ve begun to develop a custom MMORPG Discord bot with my good friend Rairb. The bot is titled “Elvandor RPG.” For those of you who are unaware, a Discord bot allows users to type commands to do various things, from moderation to funny little games. In my case, these commands allow users to fight monsters, explore dungeons, gather loot, talk to NPCs, etc. The idea is inspired by a preexisting popular RPG Discord bot known as EpicRPG, which is a very simple RPG. The plan is to create an experience with the same basic premise but much more complicated in terms of gameplay and mechanics, targeted towards a more technical and grindy audience.</p>
+            </section>
+
+            <section class="mb-6">
+                <h2 class="text-2xl font-semibold text-white mb-2">Current Commands</h2>
+                <p class="text-gray-300 mb-4">Below is a list of all current commands:</p>
+                <ul class="mb-4">
+                    <li><span class="font-bold">^</span> denotes a command that will be elaborated on later</li>
+                    <li>!badges - Manage and view your badges</li>
+                    <li>!battle - Engage in a turn-based battle with a monster</li>
+                    <li>!buy - Buy various items</li>
+                    <li>!chop - Chop wood to gather resources</li>
+                    <li>!help - Displays all available commands</li>
+                    <li>!interact - Interact with nearby NPCs</li>
+                    <li>!inventory - View your inventory</li>
+                    <li>!item - Get information about a specific item or weapon</li>
+                    <li>!leaderboard - See how you rank compared to other players</li>
+                    <li>!leave - Leave the shop you are in. This is helpful if the bot is shut down while you are in the shop</li>
+                    <li>!log - Debug command to view file content in an embed</li>
+                    <li><span class="font-bold">^</span> !map - Display detailed location information or a map of the current location or the world</li>
+                    <li>!mine - Mine ore to gather resources</li>
+                    <li>!npc - Get information about a specific NPC</li>
+                    <li><span class="font-bold">^</span> !profile - View character profile</li>
+                    <li>!sell - Sell various items</li>
+                    <li>!start - Create a new character</li>
+                    <li>!travel - Move to a new location</li>
+                </ul>
+                <p class="text-gray-300 mb-4">That looks like a good bit, but most of it is under development or we’re still working out the kinks. Besides the point, let's look at some of the more interesting commands in more detail.</p>
+            </section>
+
+            <section class="mb-6">
+                <h2 class="text-2xl font-semibold text-white mb-2">Map Command</h2>
+                <p class="text-gray-300 mb-4">The map command is very interesting in my opinion. It has two “variants”:</p>
+                <ul class="mb-4">
+                    <li><strong>!map</strong> - Shows loads of information regarding your current location in the world of Elvandor.</li>
+                    <img src="./media/08-08-2024/map-cmd.png" width="600">
+                    <li><strong>!map world</strong> - Shows the major locations you can travel to. As of now, there are only two, each containing many sub-locations.</li>
+                    <img src="./media/08-08-2024/map-world-cmd.png" width="600">
+                </ul>
+                <p class="text-gray-300 mb-4">On the more technical side of things, the commands take info from a JSON file that stores the data for the locations:</p>
+                <pre class="bg-gray-800 p-4 rounded-lg overflow-x-auto">
+<code>{
+  "5,5": {
+    "name": "Oakdale",
+    "description": "A large town in the middle of the Elvandor Forest. It's a nice place to live and work.",
+    "emoji": ":hut:",
+    "coordinates": "5,5",
+    "subLocations": {
+      "1": {
+        "name": "Farm",
+        "description": "The small farmland surrounding Oakdale. Home to various creatures and resources.",
+        "coordinates": "5,5.1",
+        "monsters": ["4000001"],
+        "drops": [
+          {
+            "0000001": {
+              "dropchance": 100
+            },
+            "0000002": {
+              "dropchance": 3
+            },
+            "0000003": {
+              "dropchance": 0.1
+            }
+          }
+        ],
+        "emoji": ":deciduous_tree:"
+      },
+      "2": {
+        "name": "Mines",
+        "description": "Mines located beneath Oakdale. Rich in minerals and ores.",
+        "coordinates": "5,5.2",
+        "monsters": ["4000001"],
+        "drops": [
+          {
+            "0000010": {
+              "dropchance": 100
+            },
+            "0000011": {
+              "dropchance": 5
+            }
+          }
+        ],
+        "emoji": ":pick:"
+      }
+    }
+  },
+  "6,5": {
+    "name": "Yoyazé",
+    "description": "A small town fallen from grace. Formerly a tourist destination, it now reigns under the control of the corrupted Yoyazé Empire.",
+    "emoji": ":japanese_goblin:",
+    "coordinates": "6,5",
+    "subLocations": {
+      "1": {
+        "name": "Yoyazé City",
+        "description": "The Yoyazé Empire's main area. It's a place of great power and influence.",
+        "coordinates": "6,5.1",
+        "monsters": ["4000001"],
+        "drops": [],
+        "emoji": ":japanese_goblin:"
+      },
+      "2": {
+        "name": "Yoyazé Forest",
+        "description": "A dense forest that surrounds Yoyazé. It's a place of great danger.",
+        "coordinates": "6,5.2",
+        "monsters": ["4000001"],
+        "drops": [],
+        "emoji": ":evergreen_tree:"
+      }
+    }
+  }
+}
+</code></pre>
+            </section>
+
+            <section class="mb-6">
+                <h2 class="text-2xl font-semibold text-white mb-2">Profile Command</h2>
+                <p class="text-gray-300 mb-4">A rather simple command, but it shows the basic stats for your character, which is a fundamental mechanism.</p>
+                <p class="text-gray-300 mb-4">Just like the map command, it gets the data from a JSON file. Coders among you may be frustrated that I'm not using a database, but rest assured it's temporary. Each player has their own file with their data. Here is my current JSON file for reference:</p>
+                <pre class="bg-gray-800 p-4 rounded-lg overflow-x-auto">
+<code>{
+  "health": 100,
+  "strength": 13,
+  "morality": 50,
+  "intelligence": 10,
+  "agility": 10,
+  "mana": 0,
+  "location": "5,5.1",
+  "badges": [
+    "900000001",
+    "900000002",
+    "900000003",
+    "900000004",
+    "900000005",
+    "900000006"
+  ],
+  "inventory": [
+    {
+      "0000001": {
+        "quantity": 31
+      }
+    }
+  ],
+  "equipped": [
+    {
+      "axe": 10000001
+    },
+    {
+      "pickaxe": 20000001
+    },
+    {
+      "weapon": 30000002
+    }
+  ],
+  "balance": 1,
+  "npcLink": "none",
+  "mininglevel": 3,
+  "foraginglevel": 2,
+  "lastChop": 1720861364792,
+  "foragexp": 136,
+  "lastMoveX": 1723223830661,
+  "lastMoveY": 1723223830661,
+  "lastMoveZ": 1720979352144,
+  "selectedBadges": [
+    "900000001",
+    "900000003",
+    "900000005",
+    "900000004",
+    "900000002"
+  ],
+  "inBattle": true,
+  "currentMonster": "4000001",
+  "currentMonsterHealth": 20,
+  "lastMine": 1720861378357,
+  "miningxp": 58
+}
+</code></pre>
+            </section>
+
+            <section class="mb-6">
+                <h2 class="text-2xl font-semibold text-white mb-2">Design Choices</h2>
+                <p class="text-gray-300 mb-4">As you’ve seen, all items have a star value. This idea went through a couple of iterations, but the concept is to have a number stored as its star value, representing rarity or strength, and transform it into a set of 5 icons. The current icons are placeholders. If you have five of the same icon, it will be merged into the next one. There are five icons valued as increments of 5^n, where n is the icon’s place in the list, starting at 0. A function exists that takes a star value and returns five icons to represent the star value. If the number cannot be divided into a combination of emojis, a suffix of (+x) is added, where x is the remaining value. Below is the function that takes the star value as input and returns the output:</p>
+                <pre class="bg-gray-800 p-4 rounded-lg overflow-x-auto">
+<code>function getStarRepresentation(number) {
+  const emojiMap = {
+    625: ":star2:",
+    125: ":diamond_shape_with_a_dot_inside:",
+    25: ":diamonds:",
+    5: ":small_orange_diamond:",
+    1: ":small_blue_diamond:",
+    0: ":white_small_square:", // Filler emoji
+  };
+
+  const values = Object.keys(emojiMap)
+    .map(Number)
+    .sort((a, b) => b - a);
+  let result = [];
+  let remaining = number;
+
+  for (let value of values) {
+    if (value === 0) continue;
+    while (remaining >= value) {
+      result.push(emojiMap[value]);
+      remaining -= value;
+    }
+  }
+
+  if (result.length > 5) {
+    const excess = result.slice(5);
+    result = result.slice(0, 5);
+    excess.forEach((emoji) => {
+      const value = values.find((key) => emojiMap[key] === emoji);
+      remaining += value;
+    });
+  }
+
+  while (result.length < 5) {
+    result.push(emojiMap[0]);
+  }
+
+  let resultStr = result.join("");
+  if (remaining > 0) {
+    resultStr += ` (+${remaining}:small_blue_diamond:)`;
+  }
+
+  return resultStr;
+}
+</code></pre>
+            </section>
+
+            <section class="mb-6">
+                <h2 class="text-2xl font-semibold text-white mb-2">Combat Damage Systems</h2>
+                <p class="text-gray-300 mb-4">Another interesting design choice, which is undecided, is how to deal with combat damage. As of now, I have two methods in mind:</p>
+                <ul class="mb-4">
+                    <li><strong>Method A:</strong> Basic damage system where a weapon is given a damage type (slashing, blunt, piercing, etc.) and a value for said damage (e.g., 20). When attacking, it will deal around 20 damage. This method is the basic system used in many MMORPG games and is simple to understand.</li>
+                    <li><strong>Method B:</strong> The DND system, where, like Method A, each weapon has a damage type, but instead of a solid number for damage, it's done with dice (e.g., 3d6), meaning 3 six-sided dice. This system allows for more flexibility and risk, and it’s the system used in many tabletop RPGs. The problem is that it can be too random, which would make combat more unbalanced for PvP and PvE.</li>
+                </ul>
+                <p class="text-gray-300 mb-4">Both methods have ups and downs, and I will likely have a decision by the second devlog.</p>
+            </section>
+
+            <section class="mb-6">
+                <h2 class="text-2xl font-semibold text-white mb-2">Feature Ideas</h2>
+                <p class="text-gray-300 mb-4">I'm going to quickly jot down a list of features I plan to or am thinking about adding:</p>
+                <ul class="mb-4">
+                    <li>Multi party fights - Allowing for more than a 1v1, so you could fit a large team of goblins or 4v1 that annoying boss with some friends.</li>
+                    <li>Open world - Quite a difficult area to tackle in a Discord bot, but an open world where players could build bases, ride mounts, and farm would be interesting. I’ve already done some prototyping for it.</li>
+                    <li>Website integration - A website where you could execute commands as if you were in Discord, allowing for a cleaner UI and no longer limiting Elvandor RPG to Discord.</li>
+                    <li>Skill tree - A basic skill tree system as seen in a lot of MMO games, not much to explain.</li>
+                </ul>
+            </section>
+
+            <section class="mb-6">
+                <h2 class="text-2xl font-semibold text-white mb-2">Conclusion</h2>
+                <p class="text-gray-300 mb-4">Elvandor RPG is still in very early development and has a long way to go. If you have any ideas or questions, feel free to contact me at jacob@deadcakemix.com. I hope you enjoyed it and found it at least a little interesting. See you in the next blog!</p>
+            </section>
+        </article>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p class="text-gray-400 mt-2">© 2024 DeadCakeMix. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
