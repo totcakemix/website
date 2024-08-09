@@ -64,40 +64,12 @@
         <section class="mb-12">
             <h2 class="text-2xl font-semibold text-white mb-4">Featured Blogs</h2>
             <div id="featured-blogs" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Sample blog cards -->
-                <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg">
-                    <img src="https://via.placeholder.com/1200x600" alt="Blog Image" class="w-full h-40 object-cover mb-4 rounded-lg">
-                    <h3 class="text-xl font-bold text-white mb-2">Rairb's Introduction</h3>
-                    <p class="text-gray-400 mb-2">Introduction to Rairb, a key contributor to the DeadCakeMix project.</p>
-                    <div class="text-gray-500 mb-2">Tags: <span class="text-blue-400">Rairb</span>, <span class="text-blue-400">Intro</span></div>
-                    <div class="text-gray-500">Date: August 09, 2024</div>
-                    <a href="/blog/08-09-2024-2" class="text-blue-400 hover:underline mt-4 inline-block">Read More</a>
-                </div>
-            
             </div>
         </section>
 
         <section>
             <h2 class="text-2xl font-semibold text-white mb-4">Recent Blogs</h2>
             <div id="recent-blogs" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Sample blog cards -->
-                <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg">
-                    <img src="https://via.placeholder.com/1200x600" alt="Blog Image" class="w-full h-40 object-cover mb-4 rounded-lg">
-                    <h3 class="text-xl font-bold text-white mb-2">Elvandor RPG - Devlog 001</h3>
-                    <p class="text-gray-400 mb-2">My first devlog on Elvandor RPG, a complex Discord RPG bot.</p>
-                    <div class="text-gray-500 mb-2">Tags: <span class="text-blue-400">Discord</span>, <span class="text-blue-400">Devlog</span>, <span class="text-blue-400">Javascript</span></div>
-                    <div class="text-gray-500">Date: August 09, 2024</div>
-                    <a href="/blog/08-09-2024" class="text-blue-400 hover:underline mt-4 inline-block">Read More</a>
-                </div>
-                <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg">
-                    <img src="https://via.placeholder.com/1200x600" alt="Blog Image" class="w-full h-40 object-cover mb-4 rounded-lg">
-                    <h3 class="text-xl font-bold text-white mb-2">Rairb's Introduction</h3>
-                    <p class="text-gray-400 mb-2">Introduction to Rairb, a key contributor to the DeadCakeMix project.</p>
-                    <div class="text-gray-500 mb-2">Tags: <span class="text-blue-400">Rairb</span>, <span class="text-blue-400">Intro</span></div>
-                    <div class="text-gray-500">Date: August 09, 2024</div>
-                    <a href="/blog/08-09-2024-2" class="text-blue-400 hover:underline mt-4 inline-block">Read More</a>
-                </div>
-            </div>
             </div>
         </section>
     </main>
@@ -114,14 +86,18 @@
                 title: "Elvandor RPG - Devlog 001",
                 date: "August 9, 2024",
                 tags: ["Discord", "Devlog", "Javascript"],
+                thumbnail: "https://via.placeholder.com/1200x600",
                 description: "My first devlog on Elvandor RPG, a complex Discord RPG bot.",
+                featured: false,
                 url: "/blog/08-09-2024"
             },
             {
                 title: "Rairb's Introduction",
                 date: "August 9, 2024",
                 tags: ["Rairb", "Intro"],
+                thumbnail: "https://via.placeholder.com/1200x600",
                 description: "Introduction to Rairb, a key contributor to the DeadCakeMix project.",
+                featured: true,
                 url: "/blog/08-09-2024-2"
             }
         ];
@@ -141,7 +117,7 @@
                     
                     const blogCard = `
                         <div class="blog-card bg-gray-900 p-6 rounded-lg shadow-lg">
-                            <img src="https://via.placeholder.com/1200x600" alt="Blog Image" class="w-full h-40 object-cover mb-4 rounded-lg">
+                            <img src="${blog.thumbnail}" class="w-full h-40 object-cover mb-4 rounded-lg">
                             <h3 class="text-xl font-bold text-white mb-2">${blog.title}</h3>
                             <p class="text-gray-400 mb-2">${blog.description}</p>
                             <div class="text-gray-500 mb-2">Tags: ${blog.tags.map(tag => `<span class="text-blue-400">${tag}</span>`).join(', ')}</div>
@@ -151,7 +127,7 @@
                     `;
 
                     
-                    if (blog.url === "/blog/08-09-2024-2") {
+                    if (blog.featured) {
                         featuredBlogsContainer.innerHTML += blogCard;
                         recentBlogsContainer.innerHTML += blogCard;
                     } else {
