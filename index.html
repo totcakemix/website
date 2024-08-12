@@ -205,16 +205,7 @@
     </style>
 
     <body class="font-mono">
-        <header class="bg-gray-800 text-white py-4">
-            <div class="container mx-auto flex justify-between items-center">
-                <a href="/" class="text-2xl font-bold">DeadCakeMix</a>
-                <nav>
-                    <a href="/" class="text-lg mx-2 hover:underline">Home</a>
-                    <a href="/blog" class="text-lg mx-2 hover:underline">Blog</a>
-                    <a href="/about" class="text-lg mx-2 hover:underline">About</a>
-                </nav>
-            </div>
-        </header>
+        <div id="header"></div>
 
         <div id="blue-section" class="flex flex-col items-center justify-center min-h-screen py-4">
             <div class="text-center">
@@ -252,56 +243,9 @@
 
 
 
-        <footer class="bg-gray-800 text-white py-4">
-            <div class="container mx-auto">
-                <p class="text-center text-gray-400 mt-2">© 2024 DeadCakeMix. All rights reserved.</p>
-            </div>
-        </footer>
+        <div id="footer"></div>
 
-        <script>
-            const text = `DeadCakeMix`;
-            let index = 0;
-
-            function typeWriter() {
-                if (index < text.length) {
-                    document.getElementById("typed-text").innerHTML += text.charAt(index);
-                    index++;
-                    setTimeout(typeWriter, 150);
-                } else {
-                    document.getElementById("sub-text").style.display = "block";
-                    document.querySelector(".bg-white").style.display = "inline-block";
-                    document.getElementById("scroll-down").style.display = "block";
-                    setTimeout(() => {
-                        document.getElementById("scroll-down").style.opacity = 1;
-                    }, 200);
-                }
-            }
-
-            document.addEventListener("DOMContentLoaded", function() {
-                typeWriter();
-            });
-
-            const observerOptions = {
-                root: null,
-                rootMargin: "0px",
-                threshold: 0.1
-            };
-
-            const aboutMe = document.querySelector("#about-me");
-            const latestPost = document.querySelector("#latest-post");
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
-                        entry.target.style.transition = "opacity 0.5s ease";
-                    }
-                });
-            }, observerOptions);
-
-            observer.observe(aboutMe);
-            observer.observe(latestPost);
-        </script>
+        <script src="index.js"></script>
+        <script src="dynamicLoader.js"></script>
     </body>
-
     </html>
