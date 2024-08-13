@@ -1,5 +1,5 @@
  // Load Header
-fetch('/dynamic loaders/header.html')
+fetch('.../dynamic%20loaders/header.html')
  .then(response => response.text())
  .then(data => {
      document.getElementById('header').innerHTML = data;
@@ -7,7 +7,7 @@ fetch('/dynamic loaders/header.html')
  .catch(error => console.error('Error loading header:', error));
 
 // Load Footer
-fetch('/dynamic loaders/footer.html')
+fetch('.../dynamic%20loaders/footer.html')
  .then(response => response.text())
  .then(data => {
      document.getElementById('footer').innerHTML = data;
