@@ -202,6 +202,48 @@
             color: #3182ce;
             text-decoration: underline;
         }
+
+        .secret-button {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    .minigame-container {
+        display: none;
+        position: fixed;
+        bottom: 40px;
+        right: 10px;
+        width: 300px;
+        height: auto;
+        background-color: #2d3748;
+        border: 2px solid #3182ce;
+        border-radius: 10px;
+        padding: 10px;
+        z-index: 1001;
+    }
+
+    .minigame-button {
+        background-color: #3182ce;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        margin: 5px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #up-ante-button {
+        display: none;
+        background-color: #e53e3e;
+    }
+        
     </style>
 
     <body class="font-mono">
@@ -245,7 +287,56 @@
 
         <div id="footer"></div>
 
+        <button class="secret-button" onclick="toggleMinigame()"></button>
+    <div id="minigame" class="minigame-container">
+        <h3 class="text-white mb-2">Secret Minigame!</h3>
+        <p id="game-message" class="text-gray-200 mb-2">Guess the number between 1 and 5:</p>
+        <input type="number" id="guess-input" min="1" max="5" class="bg-gray-700 text-white p-1 mb-2">
+        <button onclick="checkGuess()" class="minigame-button">Guess</button>
+        <button onclick="resetGame()" class="minigame-button">Reset</button>
+        <button id="up-ante-button" onclick="upTheAnte()" class="minigame-button">Up the ante?</button>
+    </div>
+        
         <script src="scripts/index.js"></script>
         <script src="scripts/dynamicLoader.js"></script>
+        <script>
+        // Minigame logic
+        let maxNumber = 5;
+        let secretNumber = Math.floor(Math.random() * maxNumber) + 1;
+        let attempts = 0;
+
+        function toggleMinigame() {
+            const minigame = document.getElementById('minigame');
+            minigame.style.display = minigame.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function checkGuess() {
+            const guess = parseInt(document.getElementById('guess-input').value);
+            attempts++;
+            
+            if (guess === secretNumber) {
+                document.getElementById('game-message').textContent = `Congratulations! You guessed it in ${attempts} attempts.`;
+                document.getElementById('up-ante-button').style.display = 'inline-block';
+            } else if (guess < secretNumber) {
+                document.getElementById('game-message').textContent = 'Too low! Try again.';
+            } else {
+                document.getElementById('game-message').textContent = 'Too high! Try again.';
+            }
+        }
+
+        function resetGame() {
+            secretNumber = Math.floor(Math.random() * maxNumber) + 1;
+            attempts = 0;
+            document.getElementById('game-message').textContent = `Guess the number between 1 and ${maxNumber}:`;
+            document.getElementById('guess-input').value = '';
+            document.getElementById('guess-input').max = maxNumber;
+            document.getElementById('up-ante-button').style.display = 'none';
+        }
+
+        function upTheAnte() {
+            maxNumber *= 2;
+            resetGame();
+        }
+    </script>
     </body>
     </html>
