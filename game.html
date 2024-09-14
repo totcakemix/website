@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker Game with Enemies and Inventory</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        #game-container {
+            margin-top: 50px;
+        }
+
+        #enemy {
+            margin: 20px auto;
+            width: 150px;
+        }
+
+        #enemy img {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        #inventory {
+            margin-top: 40px;
+            background-color: #ddd;
+            padding: 10px;
+            width: 200px;
+            margin: 0 auto;
+        }
+
+        #inventory-items {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .inventory-item {
+            width: 40px;
+            height: 40px;
+            background-color: #ccc;
+            border: 1px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h1>Enemy Clicker Game</h1>
+        <div id="enemy">
+            <img src="https://via.placeholder.com/150" alt="Enemy" id="enemy-image">
+            <p id="enemy-health">Health: 100</p>
+        </div>
+
+        <div id="inventory">
+            <h3>Inventory</h3>
+            <div id="inventory-items">
+                <!-- Items will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let enemyHealth = 100;
+        let inventory = [];
+
+        const enemyImage = document.getElementById('enemy-image');
+        const enemyHealthText = document.getElementById('enemy-health');
+        const inventoryItems = document.getElementById('inventory-items');
+
+        // Function to handle clicking on the enemy
+        enemyImage.addEventListener('click', () => {
+            if (enemyHealth > 0) {
+                enemyHealth -= 10;
+                enemyHealthText.textContent = `Health: ${enemyHealth}`;
+
+                // When enemy health reaches 0, drop an item to the inventory
+                if (enemyHealth === 0) {
+                    dropItem();
+                }
+            }
+        });
+
+        // Function to add an item to the inventory
+        function dropItem() {
+            const item = document.createElement('div');
+            item.className = 'inventory-item';
+            item.textContent = '⚔️'; // Example item icon (you can change this)
+            inventoryItems.appendChild(item);
+            inventory.push(item);
+        }
+    </script>
+</body>
+</html>
