@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Dive into Hashing: Mathematical Insights and Interactive Demos</title>
+    <link rel="icon" type="image/x-icon" href="../images/icon.png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta property="og:title" content="Deep Dive into Hashing: Mathematical Insights and Interactive Demos" />
+    <meta property="og:description" content="Explore the math behind hashing algorithms with interactive examples and visualizations." />
+</head>
+
+<style>
+    body {
+        background-color: #1a202c;
+        color: #a0aec0;
+        margin: 0;
+    }
+    .link {
+        color: #3182ce;
+        text-decoration: underline;
+        font-size: 1.25rem;
+    }
+    header nav a:hover {
+        color: #ddd;
+    }
+    .interactive-input, .interactive-output {
+        background-color: #2d3748;
+        color: #e2e8f0;
+        padding: 1rem;
+        margin-top: 0.5rem;
+        border-radius: 0.5rem;
+        width: 100%;
+    }
+</style>
+
+<body class="font-mono">
+
+    <main class="container mx-auto py-12 px-4">
+        <article class="bg-gray-900 rounded-lg shadow-lg p-6">
+            <h1 class="text-3xl font-bold text-white mb-4">Deep Dive into Hashing: Mathematical Insights and Interactive Demos</h1>
+            <p class="text-gray-400 mb-4">By Jacob | October 28, 2024</p>
+
+            <!-- Introduction -->
+            <section class="mb-6">
+                <h2 class="text-2xl font-semibold text-white mb-2">What is Hashing?</h2>
+                <p class="text-gray-300 mb-4">
+                    Hashing is a core concept in cryptography that maps data of any size to a fixed-length hash value. Let's start with an overview, followed by detailed examples and a live hashing simulator.
+                </p>
+            </section>
+
+            <!-- Mathematical Background -->
+            <section class="mb-6">
+                <h2 class="text-2xl font-semibold text-white mb-2">The Math Behind Hash Functions</h2>
+                <p class="text-gray-300 mb-4">
+                    At its core, a hash function processes an input <i>M</i> of arbitrary length, returning a fixed-length output called the hash <i>H(M)</i>. Many hash functions involve:
+                    <ul class="list-disc list-inside text-gray-300 mb-4">
+                        <li><strong>Bitwise operations</strong> like XOR and bit-shifts for scrambling bits.</li>
+                        <li><strong>Modular arithmetic</strong> to create fixed-length outputs.</li>
+                    </ul>
+                </p>
+
+                <!-- Interactive Bitwise Operation Example -->
+                <h3 class="text-xl text-gray-200">Interactive: Bitwise XOR</h3>
+                <p class="text-gray-300">Enter two numbers, and we’ll compute their XOR:</p>
+                <input type="number" id="xorInput1" class="interactive-input" placeholder="Number 1">
+                <input type="number" id="xorInput2" class="interactive-input" placeholder="Number 2">
+                <button onclick="computeXOR()" class="bg-blue-500 text-white font-bold py-2 px-4 rounded mt-4">Calculate XOR</button>
+                <p class="text-gray-300 mt-4">XOR Result:</p>
+                <div id="xorOutput" class="interactive-output">Result will appear here.</div>
+            </section>
+
+            <!-- SHA-256 Specific Operations -->
+            <section class="mb-6">
+                <h2 class="text-2xl font-semibold text-white mb-2">Understanding SHA-256</h2>
+                <p class="text-gray-300 mb-4">
+                    SHA-256 is a cryptographic hash function that creates a 256-bit output from any input. The core operations include:
+                </p>
+                <ul class="list-disc list-inside text-gray-300 mb-4">
+                    <li><strong>Message Padding:</strong> The input message is padded to be a multiple of 512 bits.</li>
+                    <li><strong>Block Processing:</strong> The padded message is split into 512-bit chunks processed with initial constants and bitwise operations.</li>
+                    <li><strong>Round Functions:</strong> Each chunk goes through 64 rounds, using bitwise operations and modular arithmetic.</li>
+                </ul>
+
+                <!-- Interactive SHA-256 Rounds Simulation -->
+                <h3 class="text-xl text-gray-200">Interactive: SHA-256 Step Simulation</h3>
+                <p class="text-gray-300">See the result of applying a single SHA-256 round on a short input. Enter any text below:</p>
+                <input type="text" id="shaInput" class="interactive-input" placeholder="Enter text here...">
+                <button onclick="computeSHA256Round()" class="bg-blue-500 text-white font-bold py-2 px-4 rounded mt-4">Simulate SHA-256 Round</button>
+                <p class="text-gray-300 mt-4">Result After One Round:</p>
+                <div id="shaOutput" class="interactive-output">Round output will appear here.</div>
+            </section>
+
+            <!-- Hashing Applications -->
+            <section class="mb-6">
+                <h2 class="text-2xl font-semibold text-white mb-2">Applications of Hashing</h2>
+                <p class="text-gray-300 mb-4">
+                    Hashing algorithms are fundamental for:
+                </p>
+                <ul class="text-gray-300 mb-4">
+                    <li><strong>Password Storage:</strong> Ensures stored passwords remain secure.</li>
+                    <li><strong>Data Verification:</strong> Verifies file integrity with file hashes.</li>
+                    <li><strong>Blockchain:</strong> Links data in a secure chain, ensuring immutability.</li>
+                </ul>
+            </section>
+        </article>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script>
+        // Bitwise XOR function
+        function computeXOR() {
+            const num1 = parseInt(document.getElementById('xorInput1').value);
+            const num2 = parseInt(document.getElementById('xorInput2').value);
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById('xorOutput').innerText = "Please enter valid numbers.";
+                return;
+            }
+            const result = num1 ^ num2;  // Bitwise XOR
+            document.getElementById('xorOutput').innerText = `XOR of ${num1} and ${num2} is: ${result}`;
+        }
+
+        // SHA-256 single round simulation
+        function computeSHA256Round() {
+            const input = document.getElementById('shaInput').value;
+            if (input === "") {
+                document.getElementById('shaOutput').innerText = "Please enter some text.";
+                return;
+            }
+            // Simulate one round by hashing the input and truncating to show the effect
+            const hash = CryptoJS.SHA256(input).toString(CryptoJS.enc.Hex).slice(0, 16);
+            document.getElementById('shaOutput').innerText = `Partial SHA-256 output (16 chars): ${hash}`;
+        }
+    </script>
+</body>
+
+</html>
