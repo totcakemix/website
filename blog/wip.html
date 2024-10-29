@@ -4,135 +4,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deep Dive into Hashing: Mathematical Insights and Interactive Demos</title>
+    <title>Hashing: A Detailed Guide</title>
     <link rel="icon" type="image/x-icon" href="../images/icon.png">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <meta property="og:title" content="Deep Dive into Hashing: Mathematical Insights and Interactive Demos" />
-    <meta property="og:description" content="Explore the math behind hashing algorithms with interactive examples and visualizations." />
+    <meta property="og:title" content="Hashing: A Detailed Guide" />
+    <meta property="og:description" content="Dive into the scientific details of hashing functions, learn about the underlying math, and explore hashing processes interactively." />
+
+    <meta property="og:image" content="../images/hash-icon.png" />
+    <meta property="og:type" content="website" />
 </head>
 
-<style>
-    body {
-        background-color: #1a202c;
-        color: #a0aec0;
-        margin: 0;
-    }
-    .link {
-        color: #3182ce;
-        text-decoration: underline;
-        font-size: 1.25rem;
-    }
-    header nav a:hover {
-        color: #ddd;
-    }
-    .interactive-input, .interactive-output {
-        background-color: #2d3748;
-        color: #e2e8f0;
-        padding: 1rem;
-        margin-top: 0.5rem;
-        border-radius: 0.5rem;
-        width: 100%;
-    }
-</style>
-
 <body class="font-mono">
+    <div id="header"></div>
 
     <main class="container mx-auto py-12 px-4">
         <article class="bg-gray-900 rounded-lg shadow-lg p-6">
-            <h1 class="text-3xl font-bold text-white mb-4">Deep Dive into Hashing: Mathematical Insights and Interactive Demos</h1>
-            <p class="text-gray-400 mb-4">By Jacob | October 28, 2024</p>
+            <h1 class="text-3xl font-bold text-white mb-4">Hashing: A Deep Dive into Its Mathematical Core</h1>
+            <p class="text-gray-400 mb-4">By Jacob| DOP</p>
 
-            <!-- Introduction -->
             <section class="mb-6">
-                <h2 class="text-2xl font-semibold text-white mb-2">What is Hashing?</h2>
-                <p class="text-gray-300 mb-4">
-                    Hashing is a core concept in cryptography that maps data of any size to a fixed-length hash value. Let's start with an overview, followed by detailed examples and a live hashing simulator.
-                </p>
+                <h2 class="text-2xl font-semibold text-white mb-2">Introduction</h2>
+                <p class="text-gray-300 mb-4">Hashing functions are the foundation of modern cryptography, data integrity, and information retrieval. This article will take you through the mathematical underpinnings, operational principles, and intricacies of hashing. Along the way, you'll find interactive components to better understand how inputs transform through complex mathematical operations.</p>
             </section>
 
-            <!-- Mathematical Background -->
             <section class="mb-6">
-                <h2 class="text-2xl font-semibold text-white mb-2">The Math Behind Hash Functions</h2>
-                <p class="text-gray-300 mb-4">
-                    At its core, a hash function processes an input <i>M</i> of arbitrary length, returning a fixed-length output called the hash <i>H(M)</i>. Many hash functions involve:
-                    <ul class="list-disc list-inside text-gray-300 mb-4">
-                        <li><strong>Bitwise operations</strong> like XOR and bit-shifts for scrambling bits.</li>
-                        <li><strong>Modular arithmetic</strong> to create fixed-length outputs.</li>
+                <h2 class="text-2xl font-semibold text-white mb-2">What is a Hash Function?</h2>
+                <p class="text-gray-300 mb-4">In its simplest form, a hash function is a mathematical algorithm that takes an input of any length and maps it to a fixed-size string of characters, typically a sequence of numbers and letters. Hashing functions are designed to be fast, efficient, and deterministic, meaning the same input always produces the same output.</p>
+            </section>
+
+            <section class="mb-6">
+                <h2 class="text-2xl font-semibold text-white mb-2">Mathematics Behind Hashing</h2>
+                <p class="text-gray-300 mb-4">Hash functions use modular arithmetic, bitwise operations, and other mathematical principles to produce unique outputs. Here’s an example function:</p>
+
+                <pre class="bg-gray-800 p-4 rounded-lg overflow-x-auto">
+<code>f(x) = (a * x + b) % m</code></pre>
+
+                <p class="text-gray-300 mb-4">In this function:
+                    <ul class="list-disc pl-6 text-gray-300">
+                        <li><code>x</code>: input value.</li>
+                        <li><code>a</code> and <code>b</code>: constants that help ensure distribution.</li>
+                        <li><code>m</code>: modulus value that keeps the output in a fixed range.</li>
                     </ul>
                 </p>
 
-                <!-- Interactive Bitwise Operation Example -->
-                <h3 class="text-xl text-gray-200">Interactive: Bitwise XOR</h3>
-                <p class="text-gray-300">Enter two numbers, and we’ll compute their XOR:</p>
-                <input type="number" id="xorInput1" class="interactive-input" placeholder="Number 1">
-                <input type="number" id="xorInput2" class="interactive-input" placeholder="Number 2">
-                <button onclick="computeXOR()" class="bg-blue-500 text-white font-bold py-2 px-4 rounded mt-4">Calculate XOR</button>
-                <p class="text-gray-300 mt-4">XOR Result:</p>
-                <div id="xorOutput" class="interactive-output">Result will appear here.</div>
+                <p class="text-gray-300 mb-4">To get an even spread of values (crucial for avoiding "collisions" where two inputs hash to the same output), constants <code>a</code> and <code>b</code> are often chosen as prime numbers. Prime numbers make it more challenging to predict patterns in the resulting hash values.</p>
             </section>
 
-            <!-- SHA-256 Specific Operations -->
             <section class="mb-6">
-                <h2 class="text-2xl font-semibold text-white mb-2">Understanding SHA-256</h2>
-                <p class="text-gray-300 mb-4">
-                    SHA-256 is a cryptographic hash function that creates a 256-bit output from any input. The core operations include:
-                </p>
-                <ul class="list-disc list-inside text-gray-300 mb-4">
-                    <li><strong>Message Padding:</strong> The input message is padded to be a multiple of 512 bits.</li>
-                    <li><strong>Block Processing:</strong> The padded message is split into 512-bit chunks processed with initial constants and bitwise operations.</li>
-                    <li><strong>Round Functions:</strong> Each chunk goes through 64 rounds, using bitwise operations and modular arithmetic.</li>
-                </ul>
-
-                <!-- Interactive SHA-256 Rounds Simulation -->
-                <h3 class="text-xl text-gray-200">Interactive: SHA-256 Step Simulation</h3>
-                <p class="text-gray-300">See the result of applying a single SHA-256 round on a short input. Enter any text below:</p>
-                <input type="text" id="shaInput" class="interactive-input" placeholder="Enter text here...">
-                <button onclick="computeSHA256Round()" class="bg-blue-500 text-white font-bold py-2 px-4 rounded mt-4">Simulate SHA-256 Round</button>
-                <p class="text-gray-300 mt-4">Result After One Round:</p>
-                <div id="shaOutput" class="interactive-output">Round output will appear here.</div>
+                <h2 class="text-2xl font-semibold text-white mb-2">Interactive Hashing Example</h2>
+                <p class="text-gray-300 mb-4">Try out the hashing process below! Input a value, and our algorithm will compute the hash:</p>
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <input type="text" id="inputValue" placeholder="Enter a value" class="bg-gray-700 text-white p-2 rounded mb-2 w-full" />
+                    <button onclick="computeHash()" class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded w-full">Compute Hash</button>
+                    <p class="text-gray-300 mt-4">Output: <span id="hashOutput" class="text-white font-bold"></span></p>
+                </div>
+                <script>
+                    function computeHash() {
+                        const input = document.getElementById('inputValue').value;
+                        const a = 31, b = 7, m = 101;  // Example constants
+                        let hashValue = 0;
+                        for (let i = 0; i < input.length; i++) {
+                            hashValue = (a * hashValue + input.charCodeAt(i) + b) % m;
+                        }
+                        document.getElementById('hashOutput').innerText = hashValue;
+                    }
+                </script>
             </section>
 
-            <!-- Hashing Applications -->
+            <section class="mb-6">
+                <h2 class="text-2xl font-semibold text-white mb-2">Types of Hash Functions</h2>
+                <p class="text-gray-300 mb-4">Hash functions serve different purposes and can be categorized as follows:</p>
+
+                <ul class="list-disc pl-6 text-gray-300">
+                    <li><strong>Cryptographic Hashes:</strong> Used in security (e.g., SHA-256). They’re designed to be non-reversible, highly complex, and consistent.</li>
+                    <li><strong>Checksum Hashes:</strong> Used for data integrity (e.g., MD5, CRC32). Less secure but faster, focusing on error-checking.</li>
+                    <li><strong>Hash Tables:</strong> Used in data structures for quick data retrieval (e.g., Java’s HashMap).</li>
+                </ul>
+            </section>
+
+            <section class="mb-6">
+                <h2 class="text-2xl font-semibold text-white mb-2">Cryptographic Hashing: A Mathematical Walkthrough</h2>
+                <p class="text-gray-300 mb-4">For a deeper look, let’s consider the Secure Hash Algorithm (SHA). SHA-256, for example, involves a series of bitwise operations, modular additions, and logical functions that transform the input.</p>
+
+                <pre class="bg-gray-800 p-4 rounded-lg overflow-x-auto">
+<code>SHA-256: Initial state = (A, B, C, D, E, F, G, H)
+Round 1-64:
+  1. Calculate new words: W(t) = Sigma(W(t-2)) + W(t-7) + Sigma(W(t-15)) + W(t-16)
+  2. Mix state variables with new words, constants, and bitwise operations.</code></pre>
+
+                <p class="text-gray-300 mb-4">Each round involves mathematical transformations that help create a final, unique 256-bit value. Try entering a number below and press "Run SHA-256" to see how it hashes into a 64-character output:</p>
+
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <input type="text" id="shaInput" placeholder="Enter text for SHA-256" class="bg-gray-700 text-white p-2 rounded mb-2 w-full" />
+                    <button onclick="runSHA256()" class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded w-full">Run SHA-256</button>
+                    <p class="text-gray-300 mt-4">SHA-256 Output: <span id="shaOutput" class="text-white font-bold"></span></p>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.0.0/crypto-js.js"></script>
+                <script>
+                    function runSHA256() {
+                        const input = document.getElementById('shaInput').value;
+                        const hash = CryptoJS.SHA256(input).toString(CryptoJS.enc.Hex);
+                        document.getElementById('shaOutput').innerText = hash;
+                    }
+                </script>
+            </section>
+
             <section class="mb-6">
                 <h2 class="text-2xl font-semibold text-white mb-2">Applications of Hashing</h2>
-                <p class="text-gray-300 mb-4">
-                    Hashing algorithms are fundamental for:
-                </p>
-                <ul class="text-gray-300 mb-4">
-                    <li><strong>Password Storage:</strong> Ensures stored passwords remain secure.</li>
-                    <li><strong>Data Verification:</strong> Verifies file integrity with file hashes.</li>
-                    <li><strong>Blockchain:</strong> Links data in a secure chain, ensuring immutability.</li>
+                <p class="text-gray-300 mb-4">Hashing is vital in:</p>
+                <ul class="list-disc pl-6 text-gray-300">
+                    <li><strong>Password Storage:</strong> Encrypt passwords with hashes to keep them secure.</li>
+                    <li><strong>Blockchain:</strong> Hashing maintains data integrity in blockchain ledgers.</li>
+                    <li><strong>Digital Signatures:</strong> Provide unique, secure verification of messages or documents.</li>
+                    <li><strong>Data Retrieval:</strong> Hash tables allow for efficient data storage and retrieval.</li>
                 </ul>
+            </section>
+
+            <section class="mb-6>
+                <h2 class="text-2xl font-semibold text-white mb-2">Collisions and Their Implications</h2>
+                <p class="text-gray-300 mb-4">A "collision" occurs when two distinct inputs produce the same hash output. In cryptographic hashing, avoiding collisions is crucial to maintain security and integrity. Here’s an example of how rare collisions are designed to be in a well-constructed hash function:</p>
+
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <p class="text-gray-300">Enter two values to see if they produce the same hash:</p>
+                    <input type="text" id="collisionInput1" placeholder="Value 1" class="bg-gray-700 text-white p-2 rounded mb-2 w-full" />
+                    <input type="text" id="collisionInput2" placeholder="Value 2" class="bg-gray-700 text-white p-2 rounded mb-2 w-full" />
+                    <button onclick="checkCollision()" class="bg-blue-500 hover:bg-blue-600 text-white p-2 rounded w-full">Check for Collision</button>
+                    <p class="text-gray-300 mt-4">Result: <span id="collisionResult" class="text-white font-bold"></span></p>
+                </div>
+                <script>
+                    function checkCollision() {
+                        const input1 = document.getElementById('collisionInput1').value;
+                        const input2 = document.getElementById('collisionInput2').value;
+                        const hash1 = CryptoJS.SHA256(input1).toString(CryptoJS.enc.Hex);
+                        const hash2 = CryptoJS.SHA256(input2).toString(CryptoJS.enc.Hex);
+                        const result = hash1 === hash2 ? "Collision!" : "No Collision!";
+                        document.getElementById('collisionResult').innerText = result;
+                    }
+                </script>
+            </section>
+
+            <section class="mb-6">
+                <h2 class="text-2xl font-semibold text-white mb-2">Conclusion</h2>
+                <p class="text-gray-300 mb-4">Hashing is a fundamental technique that serves numerous applications in computing, from data integrity to cryptographic security. By understanding the mathematical functions and mechanisms behind hashing, we can better appreciate its role in protecting data and enabling efficient data management.</p>
+                <p class="text-gray-300">Experiment with the examples above, and consider how the principles of hashing apply to other areas of technology and security.</p>
             </section>
         </article>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
-    <script>
-        // Bitwise XOR function
-        function computeXOR() {
-            const num1 = parseInt(document.getElementById('xorInput1').value);
-            const num2 = parseInt(document.getElementById('xorInput2').value);
-            if (isNaN(num1) || isNaN(num2)) {
-                document.getElementById('xorOutput').innerText = "Please enter valid numbers.";
-                return;
-            }
-            const result = num1 ^ num2;  // Bitwise XOR
-            document.getElementById('xorOutput').innerText = `XOR of ${num1} and ${num2} is: ${result}`;
-        }
-
-        // SHA-256 single round simulation
-        function computeSHA256Round() {
-            const input = document.getElementById('shaInput').value;
-            if (input === "") {
-                document.getElementById('shaOutput').innerText = "Please enter some text.";
-                return;
-            }
-            // Simulate one round by hashing the input and truncating to show the effect
-            const hash = CryptoJS.SHA256(input).toString(CryptoJS.enc.Hex).slice(0, 16);
-            document.getElementById('shaOutput').innerText = `Partial SHA-256 output (16 chars): ${hash}`;
-        }
-    </script>
+    <div id="footer"></div>
 </body>
 
 </html>
+
